@@ -1,13 +1,5 @@
-# Multi-stage Dockerfile for K-AI Pharmaceutical Chatbot
-FROM node:18-alpine as frontend-builder
-
-WORKDIR /app/frontend
-COPY frontend/package*.json ./
-RUN npm ci
-COPY frontend/ ./
-RUN npm run build
-
-FROM python:3.11-slim as backend
+# K-AI Pharmaceutical Chatbot - Render Deployment
+FROM python:3.11-slim
 
 WORKDIR /app
 
@@ -21,12 +13,18 @@ RUN apt-get update && apt-get install -y \
 COPY application/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY application/ ./
-COPY --from=frontend-builder /app/frontend/dist ./static
+# Copy application code with proper structure
+COPY application/ ./application/
+
+# Create indexes and vectors directories
+RUN mkdir -p indexes vectors inputs
+
+# Set environment variables
+ENV PYTHONPATH="/app"
+ENV PORT=7091
 
 # Expose port
 EXPOSE 7091
 
 # Start command
-CMD ["gunicorn", "--bind", "0.0.0.0:7091", "--workers", "4", "--timeout", "120", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:7091", "--workers", "2", "--timeout", "120", "application.app:app"]
