@@ -1,0 +1,22 @@
+# K-AI Simple Demo - Lightweight for Render
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install minimal dependencies
+RUN pip install flask openai gunicorn
+
+# Copy simple demo server
+COPY simple_demo_server.py ./
+
+# Set environment variables
+ENV PORT=10000
+ENV API_KEY="your_openrouter_api_key_here"
+ENV LLM_NAME="meta-llama/llama-3.2-3b-instruct:free"
+ENV OPENAI_BASE_URL="https://openrouter.ai/api/v1"
+
+# Expose port
+EXPOSE 10000
+
+# Start command
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 300 simple_demo_server:app

@@ -19,12 +19,28 @@ COPY application/ ./application/
 # Create indexes and vectors directories
 RUN mkdir -p indexes vectors inputs
 
-# Set environment variables
+# Set environment variables with defaults
 ENV PYTHONPATH="/app"
-ENV PORT=7091
+ENV PORT=10000
+ENV API_KEY="your_openrouter_api_key_here"
+ENV LLM_PROVIDER="openai"
+ENV LLM_NAME="meta-llama/llama-3.2-3b-instruct:free"
+ENV OPENAI_BASE_URL="https://openrouter.ai/api/v1"
+ENV MONGO_URI="mongodb://localhost:27017/docsgpt"
+ENV CELERY_BROKER_URL="redis://localhost:6379/0"
+ENV CELERY_RESULT_BACKEND="redis://localhost:6379/1"
+ENV CACHE_REDIS_URL="redis://localhost:6379/2"
 
 # Expose port
-EXPOSE 7091
+EXPOSE 10000
 
-# Start command - optimized for low memory
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "--workers", "1", "--max-requests", "100", "--timeout", "120", "--preload", "application.app:app"]
+# Create a simple startup script
+RUN echo '#!/bin/bash\n\
+echo "Starting K-AI Pharmaceutical Chatbot..."\n\
+echo "Port: ${PORT}"\n\
+echo "API Provider: ${LLM_PROVIDER}"\n\
+gunicorn --bind 0.0.0.0:${PORT} --workers 1 --max-requests 50 --timeout 300 --preload application.app:app\n\
+' > /app/start.sh && chmod +x /app/start.sh
+
+# Start command
+CMD ["/app/start.sh"]
