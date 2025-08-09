@@ -1,0 +1,52 @@
+services:
+  - type: web
+    name: k-ai-frontend
+    env: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    envVars:
+      - key: VITE_API_HOST
+        value: https://k-ai-backend.onrender.com
+      - key: VITE_API_STREAMING
+        fromDatabase:
+          name: k-ai-config
+          property: connectionString
+    
+  - type: web
+    name: k-ai-backend
+    env: docker
+    dockerfilePath: ./application/Dockerfile
+    dockerContext: ./application
+    envVars:
+      - key: API_KEY
+        value: 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
+      - key: LLM_PROVIDER
+        value: openai
+      - key: LLM_NAME
+        value: meta-llama/llama-3.2-3b-instruct:free
+      - key: OPENAI_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: MONGO_URI
+        fromDatabase:
+          name: k-ai-mongo
+          property: connectionString
+      - key: CELERY_BROKER_URL
+        fromDatabase:
+          name: k-ai-redis
+          property: connectionString
+      - key: CELERY_RESULT_BACKEND
+        fromDatabase:
+          name: k-ai-redis
+          property: connectionString
+      - key: CACHE_REDIS_URL
+        fromDatabase:
+          name: k-ai-redis
+          property: connectionString
+
+databases:
+  - name: k-ai-mongo
+    engine: mongodb
+  - name: k-ai-redis  
+    engine: redis
+  - name: k-ai-config
+    engine: postgres
