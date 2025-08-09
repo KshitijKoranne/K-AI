@@ -26,5 +26,5 @@ ENV PORT=7091
 # Expose port
 EXPOSE 7091
 
-# Start command
-CMD ["gunicorn", "--bind", "0.0.0.0:7091", "--workers", "2", "--timeout", "120", "application.app:app"]
+# Start command - optimized for low memory
+CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "--workers", "1", "--max-requests", "100", "--timeout", "120", "--preload", "application.app:app"]
