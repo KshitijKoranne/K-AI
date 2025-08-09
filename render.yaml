@@ -1,22 +1,8 @@
 services:
   - type: web
-    name: k-ai-frontend
+    name: k-ai-pharma
     env: docker
-    dockerfilePath: ./frontend/Dockerfile
-    dockerContext: ./frontend
-    envVars:
-      - key: VITE_API_HOST
-        value: https://k-ai-backend.onrender.com
-      - key: VITE_API_STREAMING
-        fromDatabase:
-          name: k-ai-config
-          property: connectionString
-    
-  - type: web
-    name: k-ai-backend
-    env: docker
-    dockerfilePath: ./application/Dockerfile
-    dockerContext: ./application
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: API_KEY
         value: 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
@@ -45,8 +31,6 @@ services:
 
 databases:
   - name: k-ai-mongo
-    engine: mongodb
-  - name: k-ai-redis  
-    engine: redis
-  - name: k-ai-config
-    engine: postgres
+    databaseName: k-ai
+    user: k-ai-user
+  - name: k-ai-redis
