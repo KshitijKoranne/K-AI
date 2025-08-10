@@ -11,6 +11,15 @@ fi
 
 echo "✅ Docker is running"
 
+# Start Ollama if not running
+if ! pgrep -f "ollama serve" > /dev/null; then
+    echo "🤖 Starting Ollama local LLM server..."
+    ollama serve &
+    sleep 5
+else
+    echo "✅ Ollama is already running"
+fi
+
 # Navigate to deployment directory
 cd deployment
 
@@ -30,7 +39,8 @@ echo ""
 echo "📋 To stop K-AI later, run:"
 echo "   docker-compose -f deployment/docker-compose.yaml down"
 echo ""
-echo "💡 Your OpenRouter API key is already configured"
+echo "💡 Using local Ollama with Llama 3.2 3B model"
+echo "🔒 All pharmaceutical documents stay private on your Mac"
 echo "📚 Ready to chat about pharmaceutical SOPs and GMP!"
 
 # Keep terminal open

@@ -13,7 +13,6 @@ const useTabs = () => {
     t('settings.documents.label'),
     t('settings.analytics.label'),
     t('settings.logs.label'),
-    t('settings.tools.label'),
   ];
   return tabs;
 };

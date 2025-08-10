@@ -24,7 +24,6 @@ import Analytics from './Analytics';
 import Documents from './Documents';
 import General from './General';
 import Logs from './Logs';
-import Tools from './Tools';
 import Widgets from './Widgets';
 
 export default function Settings() {
@@ -43,7 +42,6 @@ export default function Settings() {
     if (path.includes('/settings/analytics'))
       return t('settings.analytics.label');
     if (path.includes('/settings/logs')) return t('settings.logs.label');
-    if (path.includes('/settings/tools')) return t('settings.tools.label');
     if (path.includes('/settings/widgets')) return 'Widgets';
     return t('settings.general.label');
   };
@@ -58,7 +56,6 @@ export default function Settings() {
     else if (tab === t('settings.analytics.label'))
       navigate('/settings/analytics');
     else if (tab === t('settings.logs.label')) navigate('/settings/logs');
-    else if (tab === t('settings.tools.label')) navigate('/settings/tools');
     else if (tab === 'Widgets') navigate('/settings/widgets');
   };
 
@@ -123,7 +120,6 @@ export default function Settings() {
         />
         <Route path="analytics" element={<Analytics />} />
         <Route path="logs" element={<Logs />} />
-        <Route path="tools" element={<Tools />} />
         <Route
           path="widgets"
           element={

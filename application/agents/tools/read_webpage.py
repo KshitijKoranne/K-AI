@@ -37,7 +37,7 @@ class ReadWebpageTool(Tool):
             url = "http://" + url
         
         try:
-            response = requests.get(url, timeout=10, headers={'User-Agent': 'DocsGPT-Agent/1.0'})
+            response = requests.get(url, timeout=10, headers={'User-Agent': 'K-AI-Agent/1.0'})
             response.raise_for_status()  # Raise an exception for HTTP errors (4xx or 5xx)
             
             html_content = response.text

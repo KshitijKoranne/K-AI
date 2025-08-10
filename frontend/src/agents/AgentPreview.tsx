@@ -125,7 +125,7 @@ export default function AgentPreview() {
             onSubmit={(text) => handleQuestionSubmission(text)}
             loading={status === 'loading'}
             showSourceButton={selectedAgent ? false : true}
-            showToolButton={selectedAgent ? false : true}
+            showToolButton={false}
             autoFocus={false}
           />
           <p className="text-gray-4000 dark:text-sonic-silver w-full self-center bg-transparent pt-2 text-center text-xs md:inline">

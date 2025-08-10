@@ -3,8 +3,8 @@
   "chat": "Chat",
   "chats": "Chats",
   "newChat": "New Chat",
-  "inputPlaceholder": "How can DocsGPT help you?",
-  "tagline": "DocsGPT uses GenAI, please review critical information using sources.",
+  "inputPlaceholder": "Ask about pharmaceutical SOPs, GMP guidelines, or regulations...",
+  "tagline": "K-AI uses GenAI, please review critical pharmaceutical information using sources.",
   "sourceDocs": "Source",
   "none": "None",
   "cancel": "Cancel",
@@ -263,8 +263,8 @@
   },
   "sharedConv": {
     "subtitle": "Created with",
-    "button": "Get Started with DocsGPT",
-    "meta": "DocsGPT uses GenAI, please review critical information using sources."
+    "button": "Get Started with K-AI",
+    "meta": "K-AI uses GenAI, please review critical pharmaceutical information using sources."
   },
   "convTile": {
     "share": "Share",

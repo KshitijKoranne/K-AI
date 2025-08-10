@@ -322,7 +322,7 @@ export default function Navigation({ navOpen, setNavOpen }: NavigationProps) {
               </button>
             )}
             <div className="text-gray-4000 text-[20px] font-medium">
-              DocsGPT
+              K-AI
             </div>
           </div>
         </div>
@@ -345,8 +345,8 @@ export default function Navigation({ navOpen, setNavOpen }: NavigationProps) {
             }}
           >
             <a href="/" className="flex gap-1.5">
-              <img className="mb-2 h-10" src={DocsGPT3} alt="DocsGPT Logo" />
-              <p className="my-auto text-2xl font-semibold">DocsGPT</p>
+              <img className="mb-2 h-10" src={DocsGPT3} alt="K-AI Logo" />
+              <p className="my-auto text-2xl font-semibold">K-AI</p>
             </a>
           </div>
           <button
@@ -615,7 +615,7 @@ export default function Navigation({ navOpen, setNavOpen }: NavigationProps) {
               className="w-7 filter dark:invert"
             />
           </button>
-          <div className="text-gray-4000 text-[20px] font-medium">DocsGPT</div>
+          <div className="text-gray-4000 text-[20px] font-medium">K-AI</div>
         </div>
       </div>
       <DeleteConvModal

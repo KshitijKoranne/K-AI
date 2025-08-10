@@ -185,7 +185,7 @@ export default function SharedAgent() {
             onSubmit={(text) => handleQuestionSubmission(text)}
             loading={status === 'loading'}
             showSourceButton={sharedAgent ? false : true}
-            showToolButton={sharedAgent ? false : true}
+            showToolButton={false}
             autoFocus={false}
           />
           <p className="text-gray-4000 dark:text-sonic-silver hidden w-screen self-center bg-transparent py-2 text-center text-xs md:inline md:w-full">

@@ -235,7 +235,7 @@ export default function Conversation() {
             }}
             loading={status === 'loading'}
             showSourceButton={selectedAgent ? false : true}
-            showToolButton={selectedAgent ? false : true}
+            showToolButton={false}
           />
         </div>
 
